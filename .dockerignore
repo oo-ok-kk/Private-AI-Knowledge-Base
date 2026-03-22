@@ -1,0 +1,28 @@
+# 1. 绝对不要打包虚拟环境
+venv/
+.venv/
+env/
+
+# 2. 忽略 Python 的运行缓存
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 3. 忽略本地数据库和上传的原始数据
+chroma_db/
+data/
+
+# 4. 忽略操作系统产生的杂碎文件
+.DS_Store
+.ipynb_checkpoints/
+
+# 5. 忽略版本控制信息
+.git/
+.gitignore
+
+# 6. 忽略本地的日志和临时文件
+*.log
+.vscode/
+.idea/
+

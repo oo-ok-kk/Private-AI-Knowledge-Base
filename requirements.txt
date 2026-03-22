@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+streamlit
+requests
+llama-index
+llama-index-llms-deepseek
+llama-index-embeddings-huggingface
+llama-index-vector-stores-chroma
+chromadb
+python-multipart
+pymupdf
