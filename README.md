@@ -10,6 +10,23 @@ Private-AI-Knowledge-Base 🤖
 
 安全性设计：全链路环境变量解耦，数据库与敏感信息本地化存储，杜绝 API Key 泄露风险。
 
+🧠 RAG 核心工作流 (RAG Workflow)
+本项目实现了一个标准的生产级 RAG 架构，将非结构化的 PDF 文档转化为可检索的知识库：
+
+1. 数据入库阶段 (Data Ingestion Pipeline)
+精准解析：利用 PyMuPDFReader 引擎对原始 PDF 进行流式读取，确保段落格式与特殊字符的完整性。
+
+语义切片：通过 LlamaIndex 的 NodeParser 将长文本切分为具有语义联系的文本块（Nodes）。
+
+向量化存储：调用本地 BGE-small-zh 嵌入模型，将文本转化为 512 维稠密向量，持久化存储于 ChromaDB。
+
+2. 检索与生成阶段 (Retrieval & Generation)
+语义检索 (Retrieval)：当用户提问时，系统实时计算查询词的向量，在 ChromaDB 中进行相似度搜索（Top-K）。
+
+上下文增强 (Augmentation)：将检索到的最相关知识片段封装进系统提示词（System Prompt）。
+
+智能生成 (Generation)：通过 DeepSeek-V3 模型在限定的上下文范围内进行逻辑推理，确保回答的真实性与针对性。
+
 🏗️ 系统架构
 数据层 (Ingestion)：使用 PyMuPDF 读取 PDF，通过 BGE-small-zh 模型向量化并持久化至 ChromaDB。
 
